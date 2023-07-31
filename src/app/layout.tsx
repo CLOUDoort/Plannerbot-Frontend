@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCia91K-UEpHnfjD0_3eHlNu7AUejA5uJU&libraries=places&types=(cities)" type="text/javascript" async></script >
+      <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE}&libraries=places&types=(cities)`} type="text/javascript" async></script >
     </html>
   )
 }
