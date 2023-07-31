@@ -1,2 +1,0 @@
-# plannerbot-frontend
-plannerbot-frontend
