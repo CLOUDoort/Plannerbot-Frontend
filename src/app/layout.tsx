@@ -1,6 +1,7 @@
 import './globals.css'
-import type { Metadata } from 'next'
+
 import { Inter } from 'next/font/google'
+import type { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCia91K-UEpHnfjD0_3eHlNu7AUejA5uJU&libraries=places&types=(cities)" type="text/javascript" async></script >
     </html>
   )
 }
