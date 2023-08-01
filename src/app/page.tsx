@@ -1,11 +1,13 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
+import AutoComplete from '@/components/AutoComplete'
 import Image from 'next/image'
 import axios from 'axios'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import AutoComplete from '@/components/AutoComplete'
-
+import { apiInstance } from '@/api/setting'
+import Setting from '@/components/Setting'
 
 type Props = {}
 
@@ -25,9 +27,21 @@ const Home = (props: Props) => {
     response()
   }, [])
   const [next, setNext] = useState<boolean>(false)
+  const [submit, setSubmit] = useState(false)
   const clickNext = () => setNext(!next)
   const { register, handleSubmit } = useForm<FormValues>()
-  const clickSubmit: SubmitHandler<FormValues> = (FormValues) => {
+  const [place, setPlace] = useState("");
+  const clickSubmit: SubmitHandler<FormValues> = async (FormValues) => {
+    try {
+      const response = await apiInstance.post('/gpt', {
+        prompt: place + ' ' + place + ' 일간'
+      })
+      console.log('response', response)
+      // setSubmit(true)
+    }
+    catch (e) {
+      console.log(e)
+    }
     console.log("FormValues", FormValues)
   }
   return (
@@ -39,16 +53,16 @@ const Home = (props: Props) => {
         objectFit='cover'
         alt="Picture of the author"
       />
-      <div className='fixed top-0 left-0 flex items-center justify-center w-full h-full'>
-        <div className=' absolute bg-white/80 border flex flex-col items-center justify-center rounded min-w-[15rem] shadow-2xl w-[45%] lg:h-[60%] h-[40%]'>
-          <div className={`lg:text-4xl text-2xl font-semibold`}>
+      {!submit ? <div className='fixed top-0 left-0 flex items-center justify-center w-full h-full'>
+        <div className=' absolute bg-white/80 border flex flex-col items-center justify-center rounded min-w-[15rem] shadow-2xl w-[45%] h-[60%]'>
+          <div className={`lg:text-4xl text-3xl font-semibold`}>
             Planner Bot
           </div>
-          <form onSubmit={handleSubmit(clickSubmit)} className={`${next ? "opacity-100 my-[12rem]" : "opacity-0 -my-[5rem]"} flex transition-all duration-700 w-[1/2] flex-col items-center justify-center px-5 h-[12rem] `}>
-            <AutoComplete />
+          <form onSubmit={handleSubmit(clickSubmit)} className={`${next ? "opacity-100 my-[2rem]" : "opacity-0 -my-[5rem]"} flex transition-all duration-700 w-[1/2] flex-col items-center justify-center px-5 h-[12rem] `}>
+            <AutoComplete value={place} setValue={setPlace} />
             <div className='flex flex-col w-full'>
-              <label className='' htmlFor="period">기간</label>
-              <select {...register("period")} className='w-full px-4 py-2 my-2 rounded'>
+              <label htmlFor="period">기간</label>
+              <select {...register("period")} className='w-full px-4 py-2 my-2 border rounded'>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -59,9 +73,9 @@ const Home = (props: Props) => {
               </select>
             </div>
           </form>
-          <button onClick={clickNext} className='px-4 z-[10] py-2 text-xl transition-colors bg-orange-300 rounded hover:bg-orange-400 active:bg-orange-500'>{next ? "Next" : "Start"}</button>
+          <button onClick={next ? handleSubmit(clickSubmit) : clickNext} className='px-4 z-[10] py-2 text-xl transition-colors bg-orange-300 rounded hover:bg-orange-400 active:bg-orange-500'>{next ? "Next" : "Start"}</button>
         </div>
-      </div >
+      </div > : <Setting />}
     </main >
   )
 }
