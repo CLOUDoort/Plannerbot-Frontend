@@ -6,8 +6,6 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import AutoComplete from '@/components/AutoComplete'
 import GptContainer from '@/components/GptContainer'
 import Image from 'next/image'
-import { apiInstance } from '@/api/setting'
-import axios from 'axios'
 import { toast } from 'react-toastify'
 
 type Props = {}
@@ -17,15 +15,6 @@ type FormValues = {
 }
 
 const Home = (props: Props) => {
-  const [imgSrc, setImgSrc] = useState<string>("/1.jpeg")
-  // useEffect(() => {
-  //   const response = async () => {
-  //     const imageResponse = await axios.get('https://api.unsplash.com/photos/random/?client_id=X7Fln7BwlX5s0e3B-xfBlrfGBijhEfPTt1zvTJ7rAO0&query=landscape')
-  //     setImgSrc(imageResponse?.data?.links?.download)
-  //     console.log(imageResponse?.data?.links?.download)
-  //   }
-  //   response()
-  // }, [])
   const [next, setNext] = useState<boolean>(false)
   const [submit, setSubmit] = useState(false)
   const clickNext = () => setNext(!next)
