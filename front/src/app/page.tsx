@@ -2,11 +2,15 @@
 
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { textArray, viewText } from '@/store/initialState'
 
 import AutoComplete from '@/components/AutoComplete'
 import GptContainer from '@/components/GptContainer'
 import Image from 'next/image'
+import { apiInstance } from '@/api/setting'
+import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useSetAtom } from 'jotai'
 
 type Props = {}
 
@@ -21,12 +25,25 @@ const Home = (props: Props) => {
   const { register, handleSubmit } = useForm<FormValues>()
   const [place, setPlace] = useState("");
   const [period, setPeriod] = useState("")
+  const setViewText = useSetAtom(viewText)
+  const setTextArray = useSetAtom(textArray)
+  const [ipAddress, setIpAddress] = useState<string>("")
+  useEffect(() => {
+    const temp = async () => {
+      const response = await axios.get('https://api64.ipify.org/')
+      setIpAddress(response?.data)
+    }
+    temp()
+  }, [])
   const clickSubmit: SubmitHandler<FormValues> = async (FormValues) => {
     try {
-      // const response = await apiInstance.post('/gpt', {
-      //   prompt: place + ' ' + place + ' 일간'
-      // })
-      // console.log('response', response)
+      setSubmit(true)
+      setPeriod(String(FormValues.period) + ' 일간')
+      const response = await apiInstance.post('/gpt', {
+        prompt: place + ' ' + FormValues.period + ' 일간'
+      })
+      setViewText(JSON.parse(response?.data?.messages.content))
+      setTextArray(response?.data?.chatLog)
       if (!place) {
         toast.error("여행지를 입력해주세요!")
         return
@@ -35,9 +52,6 @@ const Home = (props: Props) => {
         toast.error("기간을 입력해주세요!")
         return
       }
-      setSubmit(true)
-      setPeriod(String(FormValues.period) + ' 일간')
-      console.log(place + ' ' + FormValues.period + ' 일간')
     }
     catch (e) {
       console.log(e)
@@ -49,7 +63,7 @@ const Home = (props: Props) => {
         className='absolute'
         fill={true}
         src={'/1.jpeg'}
-        objectFit='cover'
+        style={{ objectFit: "cover" }}
         alt="Picture of the author"
       />
       <div className='fixed top-0 left-0 flex items-center justify-center w-full h-full'>
@@ -63,7 +77,7 @@ const Home = (props: Props) => {
               <div className='flex flex-col w-full'>
                 <label htmlFor="period">기간</label>
                 <select {...register("period")} className='w-full p-2 my-2 border rounded'>
-                  <option value="0"></option>
+                  <option value="0">선택</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
