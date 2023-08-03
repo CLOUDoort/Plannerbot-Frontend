@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
-        <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE}&libraries=places&types=(cities)`} type="text/javascript" async></script >
+        <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&types=(cities)`} type="text/javascript" async></script >
         <body className={inter.className}>
           {children}
           <ToastContainer />
