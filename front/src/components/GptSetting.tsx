@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
 import { apiInstance } from '@/api/setting';
+import { textArray } from '@/lib/jotaiState';
 import { toast } from 'react-toastify';
 import { useAtomValue } from 'jotai'
-import { textArray } from '@/store/initialState';
 
 type Props = {
     setKeyword: React.Dispatch<React.SetStateAction<{

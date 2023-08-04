@@ -4,11 +4,11 @@ import React, { useState } from 'react'
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 
 type Props = {
-    value: string,
-    setValue: React.Dispatch<React.SetStateAction<string>>
+    place: string,
+    setPlace: React.Dispatch<React.SetStateAction<string>>
 }
 
-const AutoComplete = ({ value, setValue }: Props) => {
+const AutoComplete = ({ place, setPlace }: Props) => {
     const {
         placePredictions,
         getPlacePredictions,
@@ -22,12 +22,12 @@ const AutoComplete = ({ value, setValue }: Props) => {
             <span>여행지</span>
             <input
                 className="w-full p-2 my-2 border rounded"
-                value={value}
+                value={place}
                 placeholder="여행지 입력"
                 onChange={(evt: any) => {
                     getPlacePredictions({ input: evt.target.value });
                     setChosen(evt.target.value);
-                    setValue(evt.target.value);
+                    setPlace(evt.target.value);
                 }}
             />
             {chosen && <div className="absolute h-[10rem] left-0 overflow-x-hidden flex whitespace-nowrap flex-col w-full my-1 bg-white border z-[9999] rounded top-20">
@@ -37,7 +37,7 @@ const AutoComplete = ({ value, setValue }: Props) => {
                         renderItem={(item: any) => (
                             <List.Item className="cursor-pointer" onClick={() => {
                                 setChosen("")
-                                setValue(item.description)
+                                setPlace(item.description)
                             }
                             }>
                                 <List.Item.Meta title={item.description} />

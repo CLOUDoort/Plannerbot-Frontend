@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import GptSetting from './GptSetting'
 import GptText from './GptText'
-import { toast } from 'react-toastify'
 import LoadingSpinner from './LoadingSpinner'
+import { toast } from 'react-toastify'
 
 type Props = {
     submit: boolean,
@@ -22,13 +22,13 @@ const GptContainer = ({ submit, place, period }: Props) => {
         setKeyword([...filtered])
     }
     return (
-        <div className={`flex justify-between gap-10 h-[80%] ${submit ? "opacity-100" : "opacity-0"} w-[70%]`}>
-            <div className='flex flex-col items-center w-full min-w-[30rem] h-full px-4 border rounded shadow-2xl bg-white/80'>
+        <section className={`flex justify-between gap-10 h-[80%] ${submit ? "opacity-100" : "opacity-0"} w-[70%]`}>
+            <article className='flex z-[9999] flex-col items-center w-full min-w-[30rem] h-full px-4 border rounded shadow-2xl bg-white/80'>
                 <div className='w-full pb-4 mt-6 text-4xl font-semibold text-center'>Planner Bot
                 </div>
                 <GptText />
-            </div>
-            <div className='flex flex-col items-center justify-between h-full px-4 border min-w-[15rem] shadow-2xl bg-white/80'>
+            </article>
+            <article className='flex z-[9999] flex-col items-center justify-between h-full px-4 border min-w-[15rem] shadow-2xl bg-white/80'>
                 <div className='w-full'>
                     <div className='w-full mt-6 text-2xl font-semibold text-center'>입력 키워드</div>
                     <div className='flex flex-col mt-[2rem] gap-2 justify-center'>
@@ -40,8 +40,8 @@ const GptContainer = ({ submit, place, period }: Props) => {
                     </div>
                 </div>
                 <GptSetting keyword={keyword} setKeyword={setKeyword} />
-            </div>
-        </div>
+            </article>
+        </section>
     )
 }
 

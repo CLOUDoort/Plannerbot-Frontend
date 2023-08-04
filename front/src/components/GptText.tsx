@@ -4,7 +4,7 @@ import GoogleMap from './GoogleMap'
 import Link from 'next/link'
 import LoadingSpinner from './LoadingSpinner'
 import { useAtomValue } from 'jotai'
-import { viewText } from '@/store/initialState'
+import { viewText } from '@/lib/jotaiState'
 
 type Props = {
 }
