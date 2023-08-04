@@ -11,7 +11,7 @@ const GoogleMap = ({ address }: Props) => {
     const geocoder = useMemo(() => new google.maps.Geocoder(), []);
     useEffect(() => {
         const loader = new Loader({
-            apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+            apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
             version: "weekly",
         });
         loader.load().then(() => {
