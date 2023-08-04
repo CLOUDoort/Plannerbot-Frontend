@@ -1,6 +1,6 @@
-import { Input, List } from "antd";
 import React, { useState } from 'react'
 
+import { List } from "antd";
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 
 type Props = {
@@ -14,7 +14,7 @@ const AutoComplete = ({ place, setPlace }: Props) => {
         getPlacePredictions,
         isPlacePredictionsLoading,
     } = useGoogle({
-        apiKey: process.env.REACT_APP_GOOGLE,
+        apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     });
     const [chosen, setChosen] = useState("")
     return (

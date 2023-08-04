@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 
 import GptSetting from './GptSetting'
 import GptText from './GptText'
-import LoadingSpinner from './LoadingSpinner'
 import { toast } from 'react-toastify'
 
 type Props = {
-    submit: boolean,
     place: string,
     period: string,
 }
 
-const GptContainer = ({ submit, place, period }: Props) => {
+const GptContainer = ({ place, period }: Props) => {
     const [keyword, setKeyword] = useState([{ item: place, idx: 0 }, { item: period, idx: 1 }])
     const deleteKeyword = (idx: number) => {
         if (idx < 2) {
@@ -22,7 +20,7 @@ const GptContainer = ({ submit, place, period }: Props) => {
         setKeyword([...filtered])
     }
     return (
-        <section className={`flex justify-between gap-10 h-[80%] ${submit ? "opacity-100" : "opacity-0"} w-[70%]`}>
+        <section className={`flex justify-between gap-10 h-[80%] w-[70%]`}>
             <article className='flex z-[9999] flex-col items-center w-full min-w-[30rem] h-full px-4 border rounded shadow-2xl bg-white/80'>
                 <div className='w-full pb-4 mt-6 text-4xl font-semibold text-center'>Planner Bot
                 </div>
@@ -34,7 +32,7 @@ const GptContainer = ({ submit, place, period }: Props) => {
                     <div className='flex flex-col mt-[2rem] gap-2 justify-center'>
                         {keyword.map((item) => {
                             return (
-                                <span key={item.idx} onClick={() => deleteKeyword(item.idx)} className="p-2 overflow-hidden bg-white border rounded cursor-pointer whitespace-nowrap" >{item.item}</span>
+                                <span key={item.idx} onClick={() => deleteKeyword(item.idx)} className={`p-2 overflow-hidden ${item.idx > 1 && "hover:bg-red-400"} bg-white border rounded cursor-pointer whitespace-nowrap`}>{item.item}</span>
                             )
                         })}
                     </div>

@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import GoogleMap from './GoogleMap'
-import Link from 'next/link'
 import LoadingSpinner from './LoadingSpinner'
 import { useAtomValue } from 'jotai'
 import { viewText } from '@/lib/jotaiState'
 
-type Props = {
-}
-
-const GptText = (props: Props) => {
+const GptText = () => {
     const gptText = useAtomValue(viewText)
     const [textAddress, setTextAddress] = useState("")
     const clickMap = (text: string) => setTextAddress(text)
-
     return (
         <>
-            {viewText ?
+            {Object.entries(gptText).length ?
                 <div className='w-full h-full overflow-y-scroll'>
                     {Object.keys(gptText).map((keys: any) => (
                         <div key={keys} className="py-2 my-2 border-b-2 border-black/40">
@@ -30,8 +25,11 @@ const GptText = (props: Props) => {
                             </div>
                         </div>
                     ))}
-                    <div className='py-3 text-2xl font-semibold'>Google Map</div>
-                    {textAddress && <GoogleMap address={textAddress} />}
+                    {textAddress &&
+                        <>
+                            <div className='py-3 text-2xl font-semibold'>Google Map</div>
+                            <GoogleMap address={textAddress} />
+                        </>}
                 </div>
                 : <LoadingSpinner />}
         </>
