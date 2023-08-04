@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 
 import { apiInstance } from '@/api/setting';
-import { textArray } from '@/lib/jotaiState';
-import { toast } from 'react-toastify';
-import { useAtomValue } from 'jotai'
 
 type Props = {
     setKeyword: React.Dispatch<React.SetStateAction<{
@@ -18,8 +15,6 @@ type Props = {
 
 const GptSetting = ({ setKeyword, keyword }: Props) => {
     const [word, setWord] = useState("")
-    const context = useAtomValue(textArray)
-    console.log('context', context)
     const addKeyword = (e: any) => {
         e.preventDefault()
         if (word) {
@@ -33,11 +28,11 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
     const rePlan = async (e: any) => {
         e.preventDefault()
         try {
-            const response = await apiInstance.post('/gpt', {
-                prompt: keyword[keyword?.length - 1]?.item,
-                context
-            })
-            console.log('response', response?.data)
+            // const response = await apiInstance.post('/gpt', {
+            //     prompt: keyword[keyword?.length - 1]?.item,
+            //     context
+            // })
+            // console.log('response', response?.data)
         }
         catch (e) {
             console.error(e)
