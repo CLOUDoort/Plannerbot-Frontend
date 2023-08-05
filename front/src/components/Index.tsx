@@ -1,16 +1,15 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { textArray, viewText } from '@/lib/jotaiState'
 
 import AutoComplete from '@/components/AutoComplete'
 import GptContainer from '@/components/GptContainer'
 import Image from 'next/image'
 import PeriodSetting from './PeriodSetting'
 import { apiInstance } from '@/api/setting'
-import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
-import { viewText } from '@/lib/jotaiState'
 
 const Index = () => {
     const [next, setNext] = useState<boolean>(false)
@@ -19,15 +18,7 @@ const Index = () => {
     const [place, setPlace] = useState("")
     const [period, setPeriod] = useState("")
     const setViewText = useSetAtom(viewText)
-
-    const [ipAddress, setIpAddress] = useState<string>("")
-    useEffect(() => {
-        const temp = async () => {
-            const response = await axios.get('https://api64.ipify.org/')
-            setIpAddress(response?.data)
-        }
-        temp()
-    }, [])
+    const setTextArray = useSetAtom(textArray)
 
     const clickSubmit = async (e: any) => {
         e.preventDefault()
@@ -40,14 +31,15 @@ const Index = () => {
                 toast.error("기간을 입력해주세요!")
                 return
             }
-            setSubmit(true)
             const response = await apiInstance.post('/gpt', {
                 prompt: place + ' ' + period + ' 일간'
             })
+            setSubmit(true)
             setViewText(JSON.parse(response?.data?.messages.content))
+            setTextArray(response?.data?.chatLog)
         }
-        catch (e) {
-            console.log(e)
+        catch (e: any) {
+            toast.error(e?.response?.data?.message)
         }
     }
     return (
