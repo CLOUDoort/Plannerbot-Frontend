@@ -25,6 +25,7 @@ export default function RootLayout({
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="theme-color" content="#ffffff" />
       <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&types=(cities)`} type="text/javascript" async></script >
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4325626506283652" crossOrigin="anonymous"></script>
       <body className={inter.className}>
         {children}
         <ToastContainer />
