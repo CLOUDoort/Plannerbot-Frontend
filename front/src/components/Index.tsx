@@ -14,6 +14,7 @@ import { useSetAtom } from 'jotai'
 const Index = () => {
     const [next, setNext] = useState<boolean>(false)
     const [submit, setSubmit] = useState(false)
+    const [loading, setLoading] = useState(false)
     const clickNext = () => setNext(!next)
     const [place, setPlace] = useState("")
     const [period, setPeriod] = useState("")
@@ -31,6 +32,7 @@ const Index = () => {
                 toast.error("기간을 입력해주세요!")
                 return
             }
+            setLoading(true)
             const response = await apiInstance.post('/gpt', {
                 prompt: place + ' ' + period + ' 일간'
             })
@@ -52,7 +54,7 @@ const Index = () => {
             />
             <div className='flex items-center justify-center w-full h-full'>
                 {!submit ?
-                    <section className='bg-white/80 z-[9999] border flex flex-col items-center justify-center rounded min-w-[30rem] shadow-2xl w-[50%] h-[80%]'>
+                    <section className='bg-white/90 z-[9999] border flex flex-col items-center justify-center rounded min-w-[30rem] shadow-2xl w-[50%] h-[80%]'>
                         <div className='text-4xl font-semibold'>
                             Planner Bot
                         </div>
@@ -62,7 +64,7 @@ const Index = () => {
                             {/* 기간 설정 */}
                             <PeriodSetting period={period} setPeriod={setPeriod} />
                         </form>
-                        <button onClick={next ? clickSubmit : clickNext} className='px-4 z-[10] py-2 text-xl transition-colors bg-orange-300 rounded hover:bg-orange-400 active:bg-orange-500'>{next ? "Next" : "Start"}</button>
+                        <button onClick={next ? clickSubmit : clickNext} className='px-4 z-[10] py-2 text-xl transition-colors bg-orange-300 rounded hover:bg-orange-400 active:bg-orange-500'>{next ? (loading ? "Loading..." : "Next") : "Start"}</button>
                     </section>
                     : <GptContainer place={place} period={period} />}
             </div >

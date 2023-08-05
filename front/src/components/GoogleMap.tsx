@@ -33,7 +33,7 @@ const GoogleMap = ({ address }: Props) => {
             });
         });
     }, [address, geocoder]);
-    return <div className='min-h-[20rem] border border-gray-400 p-2 mb-8 rounded' ref={mapRef} />;
+    return <div className='min-h-[20rem] border border-gray-400 p-2 rounded' ref={mapRef} />;
 }
 
 

@@ -1,3 +1,3 @@
 import axios from 'axios'
 
-export const apiInstance = axios.create({baseURL: 'http://localhost:8080', withCredentials: true})
+export const apiInstance = axios.create({baseURL: 'https://api.planbot.click', withCredentials: true})
