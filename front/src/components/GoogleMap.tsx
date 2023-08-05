@@ -20,7 +20,7 @@ const GoogleMap = ({ address }: Props) => {
                     if (status === "OK") {
                         const map = new google.maps.Map(mapRef.current as HTMLDivElement, {
                             center: results[0].geometry.location,
-                            zoom: 14,
+                            zoom: 13,
                         });
                         const marker = new google.maps.Marker({
                             map: map,
@@ -29,11 +29,11 @@ const GoogleMap = ({ address }: Props) => {
                     } else {
                         console.error(`Geocode was not successful for the following reason: ${status}`);
                     }
-                } else return
+                }
             });
         });
     }, [address, geocoder]);
-    return <div className='min-h-[30rem] border border-gray-400 p-2 pb-4 rounded' ref={mapRef} />;
+    return <div className='min-h-[20rem] border border-gray-400 p-2 mb-8 rounded' ref={mapRef} />;
 }
 
 
