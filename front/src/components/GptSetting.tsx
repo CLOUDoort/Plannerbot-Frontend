@@ -1,25 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { limitCount, textArray } from '@/lib/jotaiState';
+import { useAtom, useAtomValue } from 'jotai';
 
 import { apiInstance } from '@/api/setting';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 type Props = {
     setKeyword: React.Dispatch<React.SetStateAction<{
         item: string;
         idx: number;
+        select: boolean;
     }[]>>,
     keyword: {
         item: string;
         idx: number;
+        select: boolean
     }[],
 }
 
+type KeywordType = {
+    item: string;
+    idx: number;
+    select: boolean
+}
+
 const GptSetting = ({ setKeyword, keyword }: Props) => {
+    const context = useAtomValue(textArray)
+    const [limit, setLimit] = useAtom(limitCount)
+
+    const [ipAddress, setIpAddress] = useState<string>("")
+    useEffect(() => {
+        const temp = async () => {
+            const response = await axios.get('https://api64.ipify.org/')
+            setIpAddress(response?.data)
+        }
+        temp()
+    }, [])
+
     const [word, setWord] = useState("")
     const addKeyword = (e: any) => {
         e.preventDefault()
         if (word) {
             setKeyword([
-                ...keyword, { item: word, idx: keyword.length }
+                ...keyword, { item: word, idx: keyword.length, select: false }
             ])
         }
         setWord("")
@@ -27,15 +51,27 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
     const handelChange = (e: any) => setWord(e.target.value)
     const rePlan = async (e: any) => {
         e.preventDefault()
+        let keywordString = ""
+        keyword.forEach((item: KeywordType) => {
+            if (!item.select) {
+                keywordString += " " + item.item
+                item.select = true
+            }
+        })
         try {
-            // const response = await apiInstance.post('/gpt', {
-            //     prompt: keyword[keyword?.length - 1]?.item,
-            //     context
-            // })
-            // console.log('response', response?.data)
+            const requestPlan = await apiInstance.post('/gpt', {
+                prompt: keyword[keyword?.length - 1]?.item,
+                context
+            })
+            setLimit(limit + 1)
+            if (limit > 5) {
+                const setCookie = await apiInstance.post('/gpt/token', {
+                    ip: ipAddress
+                })
+            }
         }
-        catch (e) {
-            console.error(e)
+        catch (e: any) {
+            toast.error(e?.response?.data?.message)
         }
     }
     return (
