@@ -12,3 +12,4 @@ interface TextArrayType {
 export const viewText = atom<ViewTextType>({})
 export const limitCount = atom<number>(1)
 export const textArray = atom<TextArrayType[]>([])
+export const submitLoading = atom<boolean>(false)

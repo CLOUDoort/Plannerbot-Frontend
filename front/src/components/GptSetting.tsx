@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { limitCount, textArray, viewText } from '@/lib/jotaiState';
+import { limitCount, submitLoading, textArray, viewText } from '@/lib/jotaiState';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
 import { apiInstance } from '@/api/setting';
@@ -30,7 +30,7 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
     const [limit, setLimit] = useAtom(limitCount)
     const setGptText = useSetAtom(viewText)
     const setTextArray = useSetAtom(textArray)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useAtom(submitLoading)
 
     const [ipAddress, setIpAddress] = useState<string>("")
     useEffect(() => {
@@ -69,7 +69,6 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
             })
             setGptText(JSON.parse(requestPlan?.data?.messages.content))
             setTextArray(requestPlan?.data?.chatLog)
-            console.log('request', requestPlan?.data)
             setLimit(limit + 1)
             if (limit > 5) {
                 const setCookie = await apiInstance.post('/gpt/token', {

@@ -29,10 +29,10 @@ const GptContainer = ({ place, period }: Props) => {
             <article className='flex z-[9999] flex-col items-center justify-between h-full px-4 border min-w-[17rem] shadow-2xl bg-white/90'>
                 <div className='w-full'>
                     <div className='w-full mt-6 text-2xl font-semibold text-center'>Keywords</div>
-                    <div className='flex flex-col mt-[2rem] gap-2 justify-center overflow-y-scroll'>
+                    <div className='flex flex-col mt-[2rem] gap-2 justify-center max-h-[22rem] overflow-y-scroll'>
                         {keyword.map((item) => {
                             return (
-                                <span key={item.idx} onClick={() => deleteKeyword(item.idx, item.select)} className={`p-2 overflow-hidden ${!item.select && "hover:bg-red-400"} bg-white border rounded cursor-pointer whitespace-nowrap`}>{item.item}</span>
+                                <span key={item.idx} onClick={() => deleteKeyword(item.idx, item.select)} className={`p-2 overflow-hidden ${!item.select && "hover:bg-red-400"} bg-white min-h-[2.6rem] border rounded cursor-pointer whitespace-nowrap`}>{item.item}</span>
                             )
                         })}
                     </div>
