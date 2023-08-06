@@ -51,17 +51,16 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
         }
         setWord("")
     }
-    // useEffect(() => {
-    //     console.log('limit', limit)
-    //     const response = async () => {
-    //         if (limit > 5) {
-    //             const setCookie = await apiInstance.post('/gpt/token', {
-    //                 ip: ipAddress
-    //             })
-    //         }
-    //     }
-    //     response()
-    // }, [ipAddress, limit])
+    useEffect(() => {
+        const response = async () => {
+            if (limit > 5) {
+                const setCookie = await apiInstance.post('/gpt/token', {
+                    ip: ipAddress
+                })
+            }
+        }
+        response()
+    }, [ipAddress, limit])
     const handelChange = (e: any) => setWord(e.target.value)
     const rePlan = async (e: any) => {
         setLoading(true)
@@ -78,11 +77,6 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
                 prompt: keyword[keyword?.length - 1]?.item,
                 context
             })
-            // const setCookie = await apiInstance.post('/gpt/token', {
-            //     ip: ipAddress
-            // })
-            // console.log('setcookie', setCookie)
-            // console.log('requestPlan', requestPlan)
             setGptText(JSON.parse(requestPlan?.data?.messages.content))
             setTextArray(requestPlan?.data?.chatLog)
             setLimit(limit + 1)
