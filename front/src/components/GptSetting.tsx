@@ -82,6 +82,8 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
                 ip: ipAddress
             })
             console.log('setcookie', setCookie)
+            console.log('requestPlan', requestPlan)
+
             setGptText(JSON.parse(requestPlan?.data?.messages.content))
             setTextArray(requestPlan?.data?.chatLog)
             setLimit(limit + 1)
