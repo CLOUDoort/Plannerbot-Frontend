@@ -78,18 +78,18 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
                 prompt: keyword[keyword?.length - 1]?.item,
                 context
             })
-            const setCookie = await apiInstance.post('/gpt/token', {
-                ip: ipAddress
-            })
-            console.log('setcookie', setCookie)
-            console.log('requestPlan', requestPlan)
-
+            // const setCookie = await apiInstance.post('/gpt/token', {
+            //     ip: ipAddress
+            // })
+            // console.log('setcookie', setCookie)
+            // console.log('requestPlan', requestPlan)
             setGptText(JSON.parse(requestPlan?.data?.messages.content))
             setTextArray(requestPlan?.data?.chatLog)
             setLimit(limit + 1)
             setLoading(false)
         }
         catch (e: any) {
+            setLoading(false)
             toast.error(e?.response?.data?.message)
         }
     }

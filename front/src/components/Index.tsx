@@ -33,16 +33,18 @@ const Index = () => {
                 toast.error("기간을 입력해주세요!")
                 return
             }
+            setLoading(true)
             const response = await apiInstance.post('/gpt', {
                 prompt: place + ' ' + period
             })
-            setLoading(true)
             setSubmit(true)
             setViewText(JSON.parse(response?.data?.messages.content))
             setTextArray(response?.data?.chatLog)
+            setLoading(false)
         }
         catch (e: any) {
-            clickNext()
+            setLoading(false)
+            setSubmit(false)
             toast.error(e?.response?.data?.message)
         }
     }
