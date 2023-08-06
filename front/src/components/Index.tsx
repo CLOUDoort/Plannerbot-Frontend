@@ -38,11 +38,12 @@ const Index = () => {
                 prompt: place + ' ' + period
             })
             setSubmit(true)
-            setLoading(false)
             setViewText(JSON.parse(response?.data?.messages.content))
             setTextArray(response?.data?.chatLog)
         }
         catch (e: any) {
+            setSubmit(false)
+            setLoading(false)
             toast.error(e?.response?.data?.message)
         }
     }
@@ -51,6 +52,7 @@ const Index = () => {
             <Image
                 fill={true}
                 src={'/1.jpeg'}
+                className="absolute top-0 bottom-0 left-0 right-0"
                 style={{ objectFit: "cover" }}
                 alt="Picture"
             />
