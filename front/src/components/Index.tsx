@@ -35,7 +35,7 @@ const Index = () => {
             }
             setLoading(true)
             const response = await apiInstance.post('/gpt', {
-                prompt: place + ' ' + period + ' 일간'
+                prompt: place + ' ' + period
             })
             setSubmit(true)
             setLoading(false)
