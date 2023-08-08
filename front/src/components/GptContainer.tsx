@@ -20,13 +20,13 @@ const GptContainer = ({ place, period }: Props) => {
         setKeyword([...filtered])
     }
     return (
-        <section className={`flex justify-between gap-5 z-[9999] h-[80%] px-3`}>
+        <section className={`flex justify-between gap-5 z-[9999] lg:h-[80%] h-[60%] px-3`}>
             <article className='flex flex-col items-center w-full h-full px-4 border rounded shadow-2xl bg-white/90'>
                 <div className='w-full pb-4 mt-6 text-2xl font-semibold text-center lg:text-4xl'>Planner Bot
                 </div>
                 <GptText />
             </article>
-            <article className='flex flex-col items-center justify-between px-4 border min-w-[5rem] shadow-2xl bg-white/90 rounded h-full gap-5 pb-5'>
+            <article className='flex flex-col items-center justify-between px-4 border min-w-[3rem] shadow-2xl bg-white/90 rounded h-full gap-5 pb-5'>
                 <div className='w-full mt-6 text-xl h-[2rem] font-semibold text-center lg:text-2xl'>Keywords</div>
                 <div className='flex flex-col w-full h-full overflow-y-scroll'>
                     <div className='w-full flex-1 h-full mb-[2rem] '>
