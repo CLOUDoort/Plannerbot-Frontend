@@ -20,21 +20,23 @@ const GptContainer = ({ place, period }: Props) => {
         setKeyword([...filtered])
     }
     return (
-        <section className={`flex justify-between gap-10 h-[80%] w-[70%]`}>
-            <article className='flex z-[9999] flex-col items-center w-full min-w-[30rem] h-full px-4 border rounded shadow-2xl bg-white/90'>
-                <div className='w-full pb-4 mt-6 text-4xl font-semibold text-center'>Planner Bot
+        <section className={`flex justify-between gap-5 z-[9999] h-[80%] px-3`}>
+            <article className='flex flex-col items-center w-full h-full px-4 border rounded shadow-2xl bg-white/90'>
+                <div className='w-full pb-4 mt-6 text-2xl font-semibold text-center lg:text-4xl'>Planner Bot
                 </div>
                 <GptText />
             </article>
-            <article className='flex z-[9999] flex-col items-center justify-between h-full px-4 border min-w-[17rem] shadow-2xl bg-white/90'>
-                <div className='w-full'>
-                    <div className='w-full mt-6 text-2xl font-semibold text-center'>Keywords</div>
-                    <div className='flex flex-col mt-[2rem] gap-2 justify-center max-h-[22rem] overflow-y-scroll'>
-                        {keyword.map((item) => {
-                            return (
-                                <span key={item.idx} onClick={() => deleteKeyword(item.idx, item.select)} className={`p-2 overflow-hidden ${!item.select && "hover:bg-red-400"} bg-white min-h-[2.6rem] border rounded cursor-pointer whitespace-nowrap`}>{item.item}</span>
-                            )
-                        })}
+            <article className='flex flex-col items-center justify-between px-4 border min-w-[5rem] shadow-2xl bg-white/90 rounded h-full gap-5 pb-5'>
+                <div className='w-full mt-6 text-xl h-[2rem] font-semibold text-center lg:text-2xl'>Keywords</div>
+                <div className='flex flex-col w-full h-full overflow-y-scroll'>
+                    <div className='w-full flex-1 h-full mb-[2rem] '>
+                        <div className='flex flex-col w-full gap-2'>
+                            {keyword.map((item) => {
+                                return (
+                                    <span key={item.idx} onClick={() => deleteKeyword(item.idx, item.select)} className={`p-2 overflow-x-hidden ${!item.select && "hover:bg-red-400"} bg-white lg:text-base text-xs border rounded cursor-pointer whitespace-nowrap`}>{item.item}</span>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
                 <GptSetting keyword={keyword} setKeyword={setKeyword} />
