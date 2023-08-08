@@ -91,9 +91,9 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
         <div className='w-full'>
             <label className='text-xs lg:text-base' htmlFor="require">Additional requirements
             </label>
-            <form onSubmit={addKeyword} className='flex items-center justify-center w-full gap-1'>
+            <form onSubmit={addKeyword} className='flex items-center justify-center w-full gap-1 text-xs lg:text-sm'>
                 <input type="text" autoComplete='off' id='require' className='w-full p-2 my-2 border rounded lg:placeholder:text-sm placeholder:text-xs' placeholder='요구사항 입력' value={word} onChange={handelChange} />
-                <button className='z-[10] lg:px-4 px-2 h-10 whitespace-nowrap lg:text-sm text-xs transition-colors bg-orange-300 rounded hover:bg-orange-400 active:bg-orange-500'>Input</button>
+                <button className='z-[10] lg:px-4 px-2 h-10 whitespace-nowrap transition-colors bg-orange-300 rounded hover:bg-orange-400 active:bg-orange-500'>Input</button>
             </form>
             <button type='button' onClick={rePlan} className='z-[10] px-4 w-full mt-2 h-10 whitespace-nowrap lg:text-lg text-sm transition-colors bg-orange-300 rounded hover:bg-orange-400 active:bg-orange-500'>{loading ? "Loading..." : "Plan"}</button>
         </div>
