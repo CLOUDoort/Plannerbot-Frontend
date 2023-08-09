@@ -57,6 +57,7 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
                 const setCookie = await apiInstance.post('/gpt/token', {
                     ip: ipAddress
                 })
+                console.log("setCookie", setCookie)
             }
         }
         response()
