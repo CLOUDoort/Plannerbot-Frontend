@@ -52,13 +52,11 @@ const GptSetting = ({ setKeyword, keyword }: Props) => {
         setWord("")
     }
     useEffect(() => {
-        console.log('limit', limit)
         const response = async () => {
             if (limit > 5) {
                 const setCookie = await apiInstance.post('/gpt/token', {
                     ip: ipAddress
                 })
-                console.log("setCookie", setCookie)
             }
         }
         response()
