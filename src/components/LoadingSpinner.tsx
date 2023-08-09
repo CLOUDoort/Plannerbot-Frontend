@@ -1,8 +1,6 @@
 import React from 'react'
 
-type Props = {}
-
-const LoadingSpinner = (props: Props) => {
+const LoadingSpinner = () => {
     return (
         <div className="m-auto lds-spinner">
             <div></div>
