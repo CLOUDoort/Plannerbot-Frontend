@@ -4,7 +4,7 @@ Planner Bot은 ChatGpt를 이용하여 사용자들이 여행 계획을 세우�
 [프로젝트 소개](https://airy-fact-6fd.notion.site/Planner-Bot-b1d4acd0b06f4084849f30be795b12b9?pvs=4)
 
 ## 기간
-220731 ~ 230808
+230731 ~ 230805
 
 ## 기술 스택
 - typescript
