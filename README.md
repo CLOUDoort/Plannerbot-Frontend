@@ -1,7 +1,7 @@
 # Plannerbot
 Planner Bot은 ChatGpt를 이용하여 사용자들이 여행 계획을 세우는데 도움을 주는 서비스입니다.
 ## Explanation
-[프로젝트 소개](https://airy-fact-6fd.notion.site/Planner-Bot-b1d4acd0b06f4084849f30be795b12b9?pvs=4)
+[프로젝트 소개](https://airy-fact-6fd.notion.site/Plannner-Bot-b1d4acd0b06f4084849f30be795b12b9?pvs=4)
 
 ## 기간
 230731 ~ 230805
