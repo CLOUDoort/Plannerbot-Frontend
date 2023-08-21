@@ -12,9 +12,6 @@ Planner Bot은 ChatGpt를 이용하여 사용자들이 여행 계획을 세우�
 - tailwind-css
 - Jotai
 - axios
-- react-toastify
-- react-google-autocomplete
-- @googlemaps/js-api-loader
 
 ## 협업
 [백엔드 코드 개발자 Github 주소](https://github.com/HoonDongKang/movieinner-project-backend)
