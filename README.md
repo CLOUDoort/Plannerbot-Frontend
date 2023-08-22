@@ -13,7 +13,7 @@ Planner Bot은 ChatGpt를 이용하여 사용자들이 여행 계획을 세우�
 - typescript
 - next.js
 - tailwind-css
-- Jotai
+- jotai
 - axios
 
 ## 기능
