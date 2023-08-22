@@ -2,11 +2,7 @@ import React, { useEffect, useMemo, useRef } from 'react'
 
 import { Loader } from "@googlemaps/js-api-loader";
 
-type Props = {
-    address: string
-}
-
-const GoogleMap = ({ address }: Props) => {
+const GoogleMap = ({ address }: { address: string }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const geocoder = useMemo(() => new google.maps.Geocoder(), []);
     useEffect(() => {

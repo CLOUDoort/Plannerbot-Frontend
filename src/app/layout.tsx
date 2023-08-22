@@ -27,7 +27,6 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="google-site-verification" content="A_WfCTlRSRvrRMOsAPHo3Y9_p4Xz-YjVFFzW5nLiJAk" />
-        <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&types=(cities)`} type="text/javascript" async></script >
       </head>
       <body className={inter.className}>
         {children}
