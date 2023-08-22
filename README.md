@@ -21,4 +21,4 @@ Planner Bot은 ChatGpt를 이용하여 사용자들이 여행 계획을 세우�
 - Google Maps Javascript API 사용하여 장소 클릭했을 때, google maps에 위치 보여주는 기능 구현 <br/> [구현과정](https://velog.io/@cloud_oort/Next.js-google-maps-%EC%82%AC%EC%9A%A9)
 
 ## 협업
-[백엔드 코드 개발자 Github 주소](https://github.com/HoonDongKang/movieinner-project-backend)
+[백엔드 코드 개발자 Github 주소](https://github.com/HoonDongKang/planner-bot)
